@@ -23,11 +23,11 @@ class Meter(BaseGameObject):
         self.value: float = value
         self.startValue: float = startValue
 
-    def _getPercentage(self, value):
+    def getPercentage(self, value):
         return (value - self.minValue) / (self.maxValue - self.minValue)
 
     def _getPosition(self, value):
-        percentage: float = self._getPercentage(value)
+        percentage: float = self.getPercentage(value)
         return array((self.position[0] + self.size[0] * percentage, self.position[1])).round()
 
     @property
