@@ -10,12 +10,13 @@ class BaseGameObject(ABC):
         self.position: ndarray = array(position)
 
     def setPosition(self, x, y):
-        self.position = array([x, y])
+        self.position[0] = x
+        self.position[1] = y
 
     @abstractmethod
     def update(self, deltaTime: float) -> None:
-        ...
+        pass
 
     @abstractmethod
     def draw(self, surface: Surface) -> None:
-        ...
+        pass

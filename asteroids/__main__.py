@@ -1,13 +1,13 @@
-from astroids.game import Game
+from asteroids.asteroidsgame import AsteroidsGame
 
 
 def main():
-    framesPerSecond = 60
+    framesPerSecond: int = 60
     screenWidth: int = 1000
     screenHeight: int = 1000
     screenSize = (screenWidth, screenHeight)
 
-    game: Game = Game(screenSize, framesPerSecond)
+    game: AsteroidsGame = AsteroidsGame(screenSize, framesPerSecond)
     game.start()
 
 

@@ -1,7 +1,5 @@
-from math import cos, sin, atan2, sqrt, radians, pi, tau
-from typing import Tuple, List
-
-import math
+from math import cos, sin, atan2, sqrt, radians, pi, atan, hypot
+from typing import Tuple, Sequence
 
 import pygame
 from pygame.surface import Surface
@@ -28,18 +26,25 @@ def drawArrow(surface: Surface,
               endPoint,
               headSize,
               lineWidth: int = 1) -> None:
-    lineAngle = math.atan2(endPoint[1] - startPoint[1], endPoint[0] - startPoint[0])
+    lineAngle = atan2(endPoint[1] - startPoint[1], endPoint[0] - startPoint[0])
     arrowHeadWidth = headSize[0]
     halfArrowHeadWidth = arrowHeadWidth / 2
     arrowHeadHeight = headSize[1]
-    z = math.atan(halfArrowHeadWidth / arrowHeadHeight)
-    d = math.hypot(halfArrowHeadWidth, arrowHeadHeight)
-    angleA = lineAngle + (math.pi - z)
-    angleB = lineAngle - (math.pi - z)
-    pointA = (d * math.cos(angleA) + endPoint[0], d * math.sin(angleA) + endPoint[1])
-    pointB = (d * math.cos(angleB) + endPoint[0], d * math.sin(angleB) + endPoint[1])
+    z = atan(halfArrowHeadWidth / arrowHeadHeight)
+    d = hypot(halfArrowHeadWidth, arrowHeadHeight)
+    angleA = lineAngle + (pi - z)
+    angleB = lineAngle - (pi - z)
+    pointA = (d * cos(angleA) + endPoint[0], d * sin(angleA) + endPoint[1])
+    pointB = (d * cos(angleB) + endPoint[0], d * sin(angleB) + endPoint[1])
     pygame.draw.line(surface, color, startPoint, endPoint, lineWidth)
     pygame.draw.polygon(surface, color, [pointA, pointB, endPoint])
+
+
+def getMagnitude(vector: Sequence):
+    squaredSum = 0
+    for i in range(len(vector)):
+        squaredSum += i ** 2
+    return sqrt(squaredSum)
 
 # def getRegularPolygon(origin, sides, radius, angle):
 #     points: List[Tuple[float, float]] = []

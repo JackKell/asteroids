@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from astroids.utility import getPointFromPolarCoordinate, getRectangle
+from asteroids.utility import getPointFromPolarCoordinate, getRectangle
 
 
 class TestGetPointFromPolarCoordinate(unittest.TestCase):
